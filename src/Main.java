@@ -1,13 +1,26 @@
 package tpm;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("--- Making Coffee ---");
-        BeverageMaker coffee = new CoffeeMaker();
-        coffee.makeBeverage();
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n--- Making Tea ---");
-        BeverageMaker tea = new TeaMaker();
-        tea.makeBeverage();
+        System.out.print("ป้อนชื่อนักศึกษา: ");
+        String name = scanner.nextLine();
+
+        System.out.print("ป้อนคะแนน: ");
+        int score = scanner.nextInt();
+
+        Student student = new Student(name, score);
+        char grade = GradeCalculator.calculateGrade(student.getScore());
+
+        if (grade == 'X') {
+            System.out.println("คะแนนไม่ถูกต้อง (0-100)");
+        } else {
+            System.out.println("เกรดของ " + student.getName() + " คือ: " + grade);
+        }
+
+        scanner.close();
     }
 }
